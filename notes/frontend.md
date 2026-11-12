@@ -54,7 +54,8 @@ export default defineConfig({
 
 - **platform:** `index.html`
 - **entrance:** `main.jsx` (hub of components)
-- **components:** `App.jsx` (integrate page components) + `[page].jsx` (page components) + `[card].jsx` (cardinal components)
+- **components:** `App.jsx` (integrate & control page components) + `[page].jsx` (page components) + `[card].jsx` (cardinal components)
+- **props&state:** `data` + `router`
 
 ```text
 index.html
@@ -65,6 +66,8 @@ index.html
         |- [page].jsx
         |- [card].jsx
     |- css/
+    |- data/
+    |- router/
 ```
 - **.jsx:** 1. React `js` func return `html` structure import `css` style; 2. resuable UI component / module
 
