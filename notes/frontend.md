@@ -4,16 +4,19 @@
 |:-|:-|
 |`node -v` `npm -v`|run local javascript|
 |`npm init -y`|+ `package.json`|
-|`npm install`|`node_modules` + : code `[module]/` + exe `.bin/[module]` <br> `package.json`: `devDependencies` (tool/package) <br> `.gitignore`: `node_modules` (reinstall from `package.json`)|
+|`npm install`|`node_modules` + : code `[module]/` + exe `.bin/[module]` <br> `package.json`: `devDependencies` (tool) <br> `.gitignore`: `node_modules` (reinstall from `package.json`)|
 |`npm run`|`node_modules/.bin` <br> `package.json`: |
 
 # Vite
+
 #BuildTool
 
-**0. modern frontend:** balance demands between **engineering: standard**, **user: faster & comfort** and **developer: efficiency & performance**
-**1. install:** `npm install -D vite`
-**2. run:** `node_modules/.bin/vite` + ` /build/preview`
-**3. config** 
+#### 1. Configuration
+
+- **modern frontend:** balance demands between **engineering: standard**, **user: faster & comfort** and **developer: efficiency & performance**
+- **install:** `npm install -D vite`
+- **run:** `node_modules/.bin/vite` + ` /build/preview`
+- **config** 
 ```json
   "scripts": {
     "dev": "vite",
@@ -27,6 +30,64 @@
 |`npm run dev`|src code + local server + **hot update**|
 |`npm run build`|`dist` code (launch version) + **compress requests** <br> + **hash cache** <br> `.gitignore`: `dist`|
 |`npm run preview`|local server + preview `dist`|
+
+# React
+
+#Framework
+
+#### 1. Configuration
+- **install:** `npm install react react-dom` 
+- **config:** `npm install -D @vitejs/plugin-react` (vite translater)
+```javascript
+// /vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+    plugins: [react()],
+});
+```
+`package.json`: + `"type": "module"`
+- **init:** `npm create vite`
+
+#### 2. Structure
+
+- **platform:** `index.html`
+- **entrance:** `main.jsx` (hub of components)
+- **components:** `App.jsx` (integrate page components) + `[page].jsx` (page components) + `[card].jsx` (cardinal components)
+
+```text
+index.html
+|- src
+    |- main.jsx
+    |- App.jsx
+    |- components/
+        |- [page].jsx
+        |- [card].jsx
+    |- css/
+```
+- **.jsx:** 1. React `js` func return `html` structure import `css` style; 2. resuable UI component / module
+
+# Vanilla
+
+#### 1. ES: module (CDN / npm)
+
+**server link**
+
+* `[module].js` - `import & export` 
+* `main.js` - `import` - `[module].js`
+
+#### 2. Structure
+
+- **html**
+- **css**
+- **javascript**
+
+```text
+index.html
+|- css\
+|- js\
+```
 
 # HTML
 
@@ -97,13 +158,6 @@ button:hover {
 ```
 
 # JavaScript
-
-#### 1. CDN / npm + module
-
-**server link**
-
-* `[module].js` - `import & export` 
-* `main.js` - `import` - `[module].js`
 
 ```javascript
 function changeText() {
