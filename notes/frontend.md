@@ -79,9 +79,10 @@ index.html
 #### Configuration
 
 - **install:** `npm install next`
-- **config:** `next.config.mjs`
+- **config**
+
 ```json
-// package.json
+// package.json +
 "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -89,7 +90,20 @@ index.html
 }
 ```
 
+```mjs
+// next.config.mjs +
+const nextConfig ={
+    output: "export",
+}
+```
+
 - **quick init:** `npm create next-app@latest`
+- **deployment**
+
+|type|note|
+|:-|:-|
+|`npm run start`|permanent resident & real-time running|
+|`next.config.mjs` <br> `npm run build`|`.next/`: halfway <br> `out/`: static export html <br> `.gitignore` <br> `/etc/nginx/sites-enabled/default`: `location / { try_files $uri $uri.html $uri/ =404;}`|
 
 #### Structure
 
@@ -102,12 +116,10 @@ app/
 components/
 css/
 data/
-next.config.mjs
 ```
 
-- **router directory (build):** `.next/server/app/[pagename].html`
+- **router directory:** `app/`
 - **pre-render mechanism:** Client Component (re-render `use client`) + Server Component (accelerate SEO)
-- **** 
 
 # Vanilla
 
