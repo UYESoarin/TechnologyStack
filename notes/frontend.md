@@ -2,6 +2,7 @@
 
 |cmd|note|
 |:-|:-|
+|`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh \| bash` <br> `\. "$HOME/.nvm/nvm.sh"` <br> `nvm install 24`|linux install|
 |`node -v` `npm -v`|run local javascript|
 |`npm init -y`|+ `package.json`|
 |`npm install`|`node_modules` + : code `[module]/` + exe `.bin/[module]` <br> `package.json`: `devDependencies` (tool) <br> `.gitignore`: `node_modules` (reinstall from `package.json`)|
@@ -9,7 +10,7 @@
 
 # Vite
 
-#BuildTool
+#BuildTool #Engineering
 
 #### 1. Configuration
 
@@ -33,7 +34,7 @@
 
 # React
 
-#Framework
+#Framework #UIComponents #ViteBased
 
 #### 1. Configuration
 - **install:** `npm install react react-dom` 
@@ -48,7 +49,7 @@ export default defineConfig({
 });
 ```
 `package.json`: + `"type": "module"`
-- **init:** `npm create vite`
+- **quick init:** `npm create vite`
 
 #### 2. Structure
 
@@ -71,6 +72,43 @@ index.html
 ```
 - **.jsx:** 1. React `js` func return `html` structure import `css` style; 2. resuable UI component / module
 
+# Next.js
+
+#Framework #ProductionScale
+
+#### Configuration
+
+- **install:** `npm install next`
+- **config:** `next.config.mjs`
+```json
+// package.json
+"scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+}
+```
+
+- **quick init:** `npm create next-app@latest`
+
+#### Structure
+
+```text
+app/
+|- layout.jsx
+|- page.jsx
+|- [pagename]/
+    |- page.jsx
+components/
+css/
+data/
+next.config.mjs
+```
+
+- **router directory (build):** `.next/server/app/[pagename].html`
+- **pre-render mechanism:** Client Component (re-render `use client`) + Server Component (accelerate SEO)
+- **** 
+
 # Vanilla
 
 #### 1. ES: module (CDN / npm)
@@ -92,26 +130,21 @@ index.html
 |- js\
 ```
 
-# HTML
+# JSON
 
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-        <title>frontend</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="card">
-            <h1>Hello, Internet<h1>
-            <p>Server: URL, Ubuntu 24.04 LTS, Nginx, SSH + Git</p>
-            <p>DNS: website - IP (public network) - server - port - nginx - doc</p>
-            <p>Port: http 80 / https 443(encrypt) / SSH: 22</p>
-            <p id="msg"> This is a HTML + CSS page.</p>
-            <button onclick="changeText()">Click here.</button>
-        </div>
-    </body>
+```json
+{
+  "name": "tech-stack",
+  "version": "1.0.0"
+}
+```
+
+# JavaScript
+
+```javascript
+function changeText() {
+    document.getElementById('msg').textContent = 'This is a JavaScript page.';
+}
 ```
 
 # CSS
@@ -160,19 +193,24 @@ button:hover {
 }
 ```
 
-# JavaScript
+# HTML
 
-```javascript
-function changeText() {
-    document.getElementById('msg').textContent = 'This is a JavaScript page.';
-}
-```
-
-# JSON
-
-```json
-{
-  "name": "tech-stack",
-  "version": "1.0.0"
-}
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>frontend</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="card">
+            <h1>Hello, Internet<h1>
+            <p>Server: URL, Ubuntu 24.04 LTS, Nginx, SSH + Git</p>
+            <p>DNS: website - IP (public network) - server - port - nginx - doc</p>
+            <p>Port: http 80 / https 443(encrypt) / SSH: 22</p>
+            <p id="msg"> This is a HTML + CSS page.</p>
+            <button onclick="changeText()">Click here.</button>
+        </div>
+    </body>
 ```
