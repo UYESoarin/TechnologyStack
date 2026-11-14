@@ -102,8 +102,8 @@ const nextConfig ={
 
 |type|note|
 |:-|:-|
-|`npm run start`|permanent resident & real-time running|
-|`next.config.mjs` <br> `npm run build`|`.next/`: halfway <br> `out/`: static export html <br> `.gitignore` <br> `/etc/nginx/sites-enabled/default`: `location / { try_files $uri $uri.html $uri/ =404;}`|
+|A: `npm run start`|permanent resident & real-time running|
+|B: `next.config.mjs` <br> `npm run build`|`.next/`: halfway <br> `out/`: static export html <br> `.gitignore` <br> `/etc/nginx/sites-enabled/default`: `location / { try_files $uri $uri.html $uri/ =404;}`|
 
 #### Structure
 

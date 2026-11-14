@@ -66,6 +66,12 @@
 |              `bg`              |    to back    |
 |              `fg`              |   to front   |
 
+## 6. Others
+
+|cmd|note|
+|:-|:-|
+|`curl`||
+
 # Virtual Machine
 
 #### Configure
