@@ -70,7 +70,7 @@
 
 |cmd|note|
 |:-|:-|
-|`curl`||
+|`curl`|`-v`|
 
 # Virtual Machine
 
