@@ -3,14 +3,18 @@ CLAUDE.md
 
 # dependencies
 node_modules/
-.venv/
 
 # next.js
 .next/
+out/
+
+# vite
+dist/
 
 # production
-dist/
-out/
-__pycache__/
+.env*
 
+# python
+.venv/
+__pycache__/
 *.py[cod]

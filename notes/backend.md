@@ -43,10 +43,42 @@
 
 # FastAPI
 
-**1. install:** `pip install "fastapi[standard]"`
-**2. router:** `@[var name].[method type]([path])` (`@app.get("/api/profile")`)
-**3. dev (hot update):** `uvicorn [doc name]:[var name] --reload` / `fastapi dev` + `.gitignore`: `__pycache__/`, `*.py[cod]`
-**4. APIdocs:** `http://localhost:8000/docs`
+#Framework
+
+#### 1. Configuration
+
+- **install:** `pip install "fastapi[standard]"`
+- **router:** `@[var name].[method type]([path])` (`@app.get("/api/profile")`)
+- **dev (hot update)**
+`uvicorn [doc name]:[var name] --reload` / `fastapi dev`
+`.gitignore`: `__pycache__/` + `*.py[cod]`
+- **API docs:** `http://localhost:8000/docs`
+#### 2. Integration
+
+- **CORS - cross origin (F/B port) resources sharing**
+`Origin: http://localhost:[frontend port]` - `Access-Control-Allow-Origin: http://localhost:[frontend port]`
+
+```python
+# GET permission
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+)
+```
+
+- **CORS - OPTIONS preflight to POST fetch**
+
+```python
+# POST permission
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["GET", "POST"],
+)
+```
+- **.env.local:** api addr
+
+- **flow:** Browser POST + OPTIONS Preflight - Request FastAPI - Python - FastAPI Response JSON - Frontend Refresh Page
 
 # DBMS - SQL
 
