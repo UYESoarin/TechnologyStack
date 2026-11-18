@@ -1,7 +1,7 @@
 # Python3
 
 **1. install (python install manager)**
-- `py install [version]`
+- `py install [version]`, `-i https://pypi.tuna.isinghua.edu.cn/simple`
 - `py list`
 - `py uninstall [version]`
 - `python --version`
@@ -80,7 +80,63 @@ app.add_middleware(
 
 - **flow:** Browser POST + OPTIONS Preflight - Request FastAPI - Python - FastAPI Response JSON - Frontend Refresh Page
 
-# DBMS - SQL
+# SQLite
+
+#EmbeddedDatabase
+
+#### 1. DataType
+
+|type|MySQL|PostgreSQL|SQLite|
+|:-|:-|:-|:-|
+|Integer|INT, BIGINT|INTEGER, BIGINT|INTEGER|
+|Decimal|DECIMAL, FLOAT, DOUBLE|NUMERIC, REAL|REAL|
+|Text|VARCHAR, TEXT|VARHCAR, TEXT|TEXT|
+|DateTime|DATE, DATETIME, TIMESTAMP|DATE, TIMESTAMP|\ (TEXT)|
+|Boolean|TINYINT(1), BOOLEAN|BOOLEAN|\ (INTEGER 0/1)|
+
+#### 2. Python REPL / Script 
+
+- **connect db + cmd cursor**
+
+```py
+import sqlite3
+conn = sqlite3.connect("[db name].db") # create if not exists
+cur = conn.cursor()
+```
+- **autocommit (DDL: CREATE/ALTER/DROP)**
+
+```py
+cur.execute("""
+CREATE TABLE tb(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    ...
+)
+""")
+```
+
+- **mannual commit (transaction)**
+
+```py
+cur.execute("[INSERT/UPDATE/DELETE]")
+...
+conn.commit()
+```
+
+- **query snapshot:** `cur.execute("[SELECT]")` + `.fetchall()` / `fecthone()` / `fetchmany()`
+
+- **SQL injection defense (sql uses `?` placeholders for parameters):** `cur.execute(sql, ("v1", "v2", ...))`
+
+#### 3. Structure
+
+- **controller layer (HTTP API):** `@app.[api]`
+- **service layer** 
+- **mapper layer (SQL/ORM CRUD):** `import sqlite3` 
+- **storage layer (DB + GUI):** `*.db` (`.gitignore`) + DB Browser for SQLite
+
+# SQL
+
+#RDBMS
 
 #### 0. Configuration
 - manager / user

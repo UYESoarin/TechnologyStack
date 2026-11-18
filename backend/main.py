@@ -1,6 +1,11 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from pypinyin import lazy_pinyin, Style
+from snownlp import SnowNLP
+from datetime import datetime, timezone
+
+from storage import init_db, save_record, get_history
 
 app = FastAPI()
 
@@ -10,6 +15,16 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
 )
 
+init_db()
+
+def score_label(score):
+    if score >= 0.6:
+        return "偏积极"
+    elif score <= 0.4:
+        return "偏消极"
+    else:
+        return "中性"
+    
 profile = {
     "heroTitle": "关于我",  # → 临时加的标记，验证完删掉
     "heroSubtitle": "项目，创意，灵感，心得，我的作品",
@@ -34,9 +49,18 @@ def get_profile():
 
 @app.post("/api/analyze")
 def analyze(req: AnalyzeRequest):
-    return {
-        "text": req.text,
-        "score": 0.5,
-        "label": "偏平静",
-        "pinyin": "（模块 6 再说）",
+    text = req.text
+    score = round(SnowNLP(text).sentiments, 2)
+    result = {
+        "text": text,
+        "score": score,
+        "label": score_label(score),
+        "pinyin": " ".join(lazy_pinyin(text, style=Style.TONE)),
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),  # ← 新增
     }
+    save_record(result)                                                          # ← 存档到文件
+    return result
+
+@app.get("/api/history")
+def history():
+    return get_history(2)
