@@ -76,6 +76,7 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
 )
 ```
+
 - **.env.local:** api addr
 
 - **flow:** Browser POST + OPTIONS Preflight - Request FastAPI - Python - FastAPI Response JSON - Frontend Refresh Page
@@ -159,3 +160,16 @@ conn.commit()
 
 - `GRANT`
 - `REVOKE`
+
+# Session
+
+#### 1. Cookie
+
+- **config (HTTP): `session_id`**
+
+|part|field|note|
+|:-|:-|:-|
+|response head|`Set-Cookie`|server provide (`UUID`) + store (table: `session_id` + `session data`)|
+|request head|`Cookie`|client (browser) keep + commit|
+
+- **CORS:** frontend `fetch` + `credentials: "include"`; backend `app.add_middleware` + `allow_credentials=True`
