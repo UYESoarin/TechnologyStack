@@ -13,6 +13,7 @@ dist/
 
 # production
 .env*
+!.env.example
 
 # python
 .venv/

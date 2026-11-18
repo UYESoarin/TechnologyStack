@@ -53,6 +53,7 @@
 `uvicorn [doc name]:[var name] --reload` / `fastapi dev`
 `.gitignore`: `__pycache__/` + `*.py[cod]`
 - **API docs:** `http://localhost:8000/docs`
+
 #### 2. Integration
 
 - **CORS - cross origin (F/B port) resources sharing**
@@ -76,10 +77,25 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
 )
 ```
-
-- **.env.local:** api addr
-
 - **flow:** Browser POST + OPTIONS Preflight - Request FastAPI - Python - FastAPI Response JSON - Frontend Refresh Page
+
+#### 3. Deployment
+
+|stage|note|
+|:-|:-|
+|environment & dependency configuration| firewall <br> `.env.example` <br> `.venv` + `install` (`npm` + `pip`)|
+|frontend run / build static page|`nginx`|
+|backend run + permanent resident|`fastapi run`|
+|database|
+
+- **config doc (`.[hidden]`)** 
+
+|tool|doc|note|
+|:-|:-|:-|
+|Next.js|`.env.local` / `.env.development` (dev) / `.env.production` (run) / `.env`|`.gitignore`:`.env*` + `!.env.example`|
+|Python|`.env`|`python-dotenv`|
+
+
 
 # SQLite
 
