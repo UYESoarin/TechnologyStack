@@ -83,10 +83,11 @@ app.add_middleware(
 
 |stage|note|
 |:-|:-|
-|environment & dependency configuration| firewall <br> `.env.example` <br> `.venv` + `install` (`npm` + `pip`)|
+|environment + dependency + configuration|firewall <br> `.env.example` <br> `.venv` + `install` (`npm` + `pip`)|
 |frontend run / build static page|`nginx`|
-|backend run + permanent resident|`fastapi run`|
-|database|
+|backend run + permanent resident|`fastapi run` <br> `nohup .venv/bin/fastapi run > backend.log 2>&1 &`|
+|database||
+|`README`|introduction <br> technology stack <br> local run <br> server deploy <br> instruction|
 
 - **config doc (`.[hidden]`)** 
 
